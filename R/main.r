@@ -2,7 +2,8 @@
 
 libs <- c(
     "sf", "R.utils",
-    "scales", "deckgl"
+    "scales", "deckgl",
+    "htmlwidgets"
 )
 
 installed_libraries <- libs %in% rownames(
@@ -85,7 +86,7 @@ properties <- list(
 
 # 46.801111, 8.226667
 
-deckgl::deckgl(
+map <- deckgl::deckgl(
     latitude = 46.801111,
     longitude = 8.226667,
     zoom = 6, pitch = 45
@@ -97,4 +98,11 @@ deckgl::deckgl(
     deckgl::add_basemap(
         deckgl::use_carto_style()
     )
+
+# 6. EXPORT AS HTML
+
+htmlwidgets::saveWidget(
+    map, file = "map.html",
+    selfcontained = F
+)
 
